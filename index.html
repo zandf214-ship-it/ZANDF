@@ -433,22 +433,71 @@
         <h2 class="section-title">Let's Build Something <span class="gradient-text">Extraordinary</span></h2>
         <p class="section-subtitle">Have a project in mind? Let's talk about how ZANDF can bring your vision to life
           with cutting-edge web solutions.</p>
-        <div class="cta-buttons">
-          <a href="mailto:arkal10293@gmail.com" class="btn-primary" id="cta-email">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+
+        <!-- Contact Form (EmailJS) -->
+        <form id="contactForm" class="contact-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="from_name">Full Name</label>
+              <input type="text" id="from_name" name="from_name" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+              <label for="from_email">Email Address</label>
+              <input type="email" id="from_email" name="from_email" placeholder="john@company.com" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="+20 122 328 5381">
+            </div>
+            <div class="form-group">
+              <label for="service">Service Needed</label>
+              <select id="service" name="service" required>
+                <option value="" disabled selected>Select a service</option>
+                <option value="Web Design & UI/UX">Web Design & UI/UX</option>
+                <option value="Custom Development">Custom Development</option>
+                <option value="E-Commerce Solutions">E-Commerce Solutions</option>
+                <option value="Mobile-First Apps">Mobile-First Apps</option>
+                <option value="SEO & Performance">SEO & Performance</option>
+                <option value="Support & Maintenance">Support & Maintenance</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="message">Project Details</label>
+            <textarea id="message" name="message" rows="5"
+              placeholder="Tell us about your project — goals, timeline, budget..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary form-submit-btn" id="contact-submit">
+            <span class="btn-text">Send Message</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </button>
+
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+
+        <div class="cta-alt-contact">
+          <a href="mailto:arkal10293@gmail.com" id="cta-email">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
               stroke-linecap="round" stroke-linejoin="round">
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
               <polyline points="22,6 12,13 2,6" />
             </svg>
             arkal10293@gmail.com
           </a>
-          <a href="#" class="btn-secondary" id="cta-schedule">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          <span class="cta-alt-divider">•</span>
+          <a href="tel:01223285381" id="cta-phone">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
               stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="4" width="18" height="18" rx="2" />
-              <path d="M16 2v4M8 2v4M3 10h18" />
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
             </svg>
-            Schedule a Call
+            01223285381
           </a>
         </div>
       </div>
@@ -526,6 +575,7 @@
     </div>
   </footer>
 
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="script.js"></script>
 </body>
 
