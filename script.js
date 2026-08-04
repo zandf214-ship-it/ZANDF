@@ -169,7 +169,51 @@ document.addEventListener('DOMContentLoaded', () => {
       ctaContainer.style.background = '';
     });
   }
+  // ——— EmailJS contact form (Get in Touch section) ———
+  // 1. Create a free account at https://www.emailjs.com
+  // 2. Add an Email Service (Gmail, Outlook, etc.) -> get your SERVICE_ID
+  // 3. Create an Email Template with variables: from_name, from_email, phone, service, message -> get your TEMPLATE_ID
+  // 4. Get your PUBLIC_KEY from Account > General
+  // 5. Replace the three placeholders below.
+  const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+  const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
+  const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
 
+  if (window.emailjs) {
+    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+  }
+
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    const formStatus = document.getElementById('formStatus');
+    const submitBtn = document.getElementById('contact-submit');
+    const submitBtnText = submitBtn.querySelector('.btn-text');
+
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      formStatus.textContent = '';
+      formStatus.className = 'form-status';
+      submitBtn.disabled = true;
+      submitBtnText.textContent = 'Sending...';
+
+      emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, contactForm)
+        .then(() => {
+          formStatus.textContent = 'Thanks! Your message has been sent — we\'ll be in touch soon.';
+          formStatus.classList.add('success');
+          contactForm.reset();
+        })
+        .catch((error) => {
+          formStatus.textContent = 'Something went wrong. Please try again or email us directly.';
+          formStatus.classList.add('error');
+          console.error('EmailJS error:', error);
+        })
+        .finally(() => {
+          submitBtn.disabled = false;
+          submitBtnText.textContent = 'Send Message';
+        });
+    });
+  }
   // ——— Year auto-update ———
   const yearEl = document.querySelector('.footer-bottom p');
   if (yearEl) {
